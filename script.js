@@ -26,11 +26,15 @@ async function fetchNews(query) {
 	try {
 		const response = await fetch(`${url}${query}&apiKey=${API_KEY1}`);
 		const data = await response.json();
+		console.log("received API 1");
 		bindData(data.articles);
+		console.log(data.articles);
 	} catch (error) {
 		try {
 			const response = await fetch(`${url}${query}&apiKey=${API_KEY2}`);
 			const data = await response.json();
+			console.log("received API 2");
+			console.log(data.articles);
 			bindData(data.articles);
 		} catch (error) {
 			errorMessage.innerHTML = `${error}`;
@@ -43,7 +47,7 @@ async function fetchNews(query) {
 function bindData(articles) {
 	const cardsContainer = document.querySelector("#cards-container");
 	const newsCardsTemplate = document.querySelector("#news-card-template");
-
+	console.log(articles);
 	if (articles) {
 		cardsContainer.innerHTML = "";
 	}
